@@ -1,20 +1,32 @@
 from django.shortcuts import redirect, render
+from django.contrib import messages
 
 from .config import PAGE_TITLES
 from .forms import VisitorMessageForm
+from .services import send_visitor_message
+from .exceptions import SendMessageError
 
 
 def home_page(request):
+    form = VisitorMessageForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        try:
+            send_visitor_message(
+                sender_name=form.cleaned_data.get('name', 'name_unreadable'),
+                sender_email=form.cleaned_data.get('email', 'email_unreadable'),
+                text=form.cleaned_data.get('message', '')
+            )
+        except SendMessageError:
+            messages.error(
+                request,
+                'Your message wasn\'t sent due to internall erorr. Please, try to send it again.'
+            )
 
-    if request.method == 'POST':
-        form = VisitorMessageForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home_page')
+        return redirect('home_page')
 
     context = {
         'title': PAGE_TITLES.get('home_page', ''),
-        'message_form': VisitorMessageForm()
+        'message_form': form
     }
     return render(request, 'website/index.html', context)
 
@@ -24,7 +36,3 @@ def product_page(request):
         'title': PAGE_TITLES.get('product_page', '')
     }
     return render(request, 'website/product.html', context)
-
-
-def visitor_message_success(request):
-    return render(request, 'website/index.html')

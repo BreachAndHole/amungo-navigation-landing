@@ -3,6 +3,11 @@ PAGE_TITLES = {
     'product_page': 'Amungo Navigation - Product',
 }
 
+EMAIL_SUBJECT = 'New request'
+EMAIL_RECEIVERS_LIST = [
+    'frolovsu25@gmail.com',
+]
+
 MESSAGE_FORM_PLACEHOLDERS = {
     'name': 'John',
     'email': 'john@gmail.com',

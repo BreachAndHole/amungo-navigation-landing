@@ -1,11 +1,15 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
-<h1>main page content</h1>
-
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ message_form.as_p }}
-    <button type="submit">Send message</button>
-</form>
+<div class="container m-3">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ message_form.as_p }}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <p>{{ form.errors }}</p>
+        <button type="submit">Send message</button>
+    </form>
+</div>
 {% endblock content %}
