@@ -3,7 +3,7 @@ PAGE_TITLES = {
     'product_page': 'Amungo Navigation - Product',
 }
 
-EMAIL_SUBJECT = 'New request'
+EMAIL_SUBJECT = 'New website message'
 EMAIL_RECEIVERS_LIST = [
     'frolovsu25@gmail.com',
 ]

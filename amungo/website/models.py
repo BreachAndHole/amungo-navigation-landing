@@ -49,9 +49,9 @@ class BoardPhoto(BaseProductPhoto):
 
 
 class VisitorMessage(models.Model):
-    name = models.CharField('имя', max_length=50)
+    name = models.CharField('name', max_length=50)
     email = models.EmailField('email')
-    message = models.TextField('сообщение')
+    message = models.TextField('message')
     date = models.DateField('дата посещения', auto_now_add=True)
 
     class Meta:

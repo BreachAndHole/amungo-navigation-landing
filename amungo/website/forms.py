@@ -13,12 +13,22 @@ class VisitorMessageForm(ModelForm):
 
         widgets = {
             'name': TextInput(
-                attrs={'placeholder': MESSAGE_FORM_PLACEHOLDERS.get('name', '')}
+                attrs={
+                    'placeholder': MESSAGE_FORM_PLACEHOLDERS.get('name', ''),
+                    'class': 'form-control',
+                }
             ),
             'email': TextInput(
-                attrs={'placeholder': MESSAGE_FORM_PLACEHOLDERS.get('email', '')}
+                attrs={
+                    'placeholder': MESSAGE_FORM_PLACEHOLDERS.get('email', ''),
+                    'class': 'form-control',
+                }
             ),
             'message': Textarea(
-                attrs={'placeholder': MESSAGE_FORM_PLACEHOLDERS.get('message', '')}
+                attrs={
+                    'placeholder': MESSAGE_FORM_PLACEHOLDERS.get('message', ''),
+                    'class': 'form-control',
+                    'rows': 3,
+                }
             ),
         }
