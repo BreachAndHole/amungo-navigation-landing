@@ -5,7 +5,10 @@ from .config import MESSAGE_FORM_PLACEHOLDERS
 
 
 class VisitorMessageForm(ModelForm):
-
+    """
+    Message from this form will be saved in database
+    and sent to all emails listed in EMAIL_RECEIVERS_LIST in website/config.py file
+    """
     class Meta:
         model = VisitorMessage
 
@@ -28,7 +31,7 @@ class VisitorMessageForm(ModelForm):
                 attrs={
                     'placeholder': MESSAGE_FORM_PLACEHOLDERS.get('message', ''),
                     'class': 'form-control',
-                    'rows': 3,
+                    'rows': 5,  # This setting will affect height of message area
                 }
             ),
         }
